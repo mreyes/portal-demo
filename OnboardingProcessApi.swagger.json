@@ -1,0 +1,221 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "OnboardingProcessApi",
+        "version": "1.0"
+    },
+    "host": "transamerica.azure-api.net",
+    "basePath": "/httpbin",
+    "schemes": [
+        "https"
+    ],
+    "securityDefinitions": {
+        "apiKeyHeader": {
+            "type": "apiKey",
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header"
+        },
+        "apiKeyQuery": {
+            "type": "apiKey",
+            "name": "subscription-key",
+            "in": "query"
+        }
+    },
+    "security": [
+        {
+            "apiKeyHeader": []
+        },
+        {
+            "apiKeyQuery": []
+        }
+    ],
+    "paths": {
+        "/onboardingprocess/process-definition/{id}/start": {
+            "post": {
+                "operationId": "/onboardingprocess/process-definition/{id}/start - POST",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/StartProcessResponse"
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ]
+            }
+        },
+        "/onboardingprocess/task": {
+            "get": {
+                "operationId": "/onboardingprocess/task?processInstanceId={processInstanceId} - GET",
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/GetTaskResponse"
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ]
+            }
+        },
+        "/onboardingprocess/task/{id}/complete": {
+            "post": {
+                "operationId": "/onboardingprocess/task/{id}/complete - POST",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/TaskComplete"
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "TaskComplete": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "GetTaskResponse": {
+            "type": "object",
+            "properties": {
+                "assignee": {
+                    "type": "string"
+                },
+                "caseDefinitionId": {
+                    "type": "string"
+                },
+                "caseExecutionId": {
+                    "type": "string"
+                },
+                "caseInstanceId": {
+                    "type": "string"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "delegationState": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "due": {
+                    "type": "string"
+                },
+                "executionId": {
+                    "type": "string"
+                },
+                "followUp:": {
+                    "type": "string"
+                },
+                "formKey": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "parentTaskId": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "integer"
+                },
+                "processDefinitionId": {
+                    "type": "string"
+                },
+                "processInstanceId": {
+                    "type": "string"
+                },
+                "taskDefinitionKey": {
+                    "type": "string"
+                },
+                "tenantId": {
+                    "type": "string"
+                }
+            }
+        },
+        "StartProcessResponse": {
+            "type": "object",
+            "properties": {
+                "businessKey": {
+                    "type": "string"
+                },
+                "definitionId": {
+                    "type": "string"
+                },
+                "ended": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "href": {
+                                "type": "string"
+                            },
+                            "method": {
+                                "type": "string"
+                            },
+                            "rel": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "suspended": {
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}
